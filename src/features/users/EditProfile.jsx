@@ -15,8 +15,7 @@ export const EditProfile = () => {
 
 	const [userDetails, setUserDetails] = useState(profile);
 
-	const CLOUDNARY_API =
-		"https://api.cloudinary.com/v1_1/dez3df3f0/image/upload/";
+	const CLOUDNARY_API = process.env.CREACT_APP_CLOUDINARY_API_KEY;
 
 	const updateProfileData = () => {
 		dispatch(updateUserProfile({ token, userDetails }));
@@ -41,11 +40,11 @@ export const EditProfile = () => {
 
 	return (
 		<div className="flex flex-col">
-			<h1>Edit Profile</h1>
 			<UserCard requiresUserProfile={profile} />
-			<div className="flex flex-col justify-center lg:mx-auto  mx-6 border rounded-md  border-gray-400  mt-6 lg:mt-28 py-4 lg:w-[40rem]">
+			<h1 className="text-white text-2xl text-bold">Edit Profile</h1>
+			<div className="flex flex-col justify-center  mx-3 lg:mx-auto border rounded-md  border-gray-400  mt-4 lg:mt-28 py-2 lg:w-[40rem]">
 				<div className=" px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b-2 border-gray-400">
-					<dt className="text-lg text-white font-medium ">Name</dt>
+					<dt className="text-lg text-white font-medium ">Display Pic</dt>
 
 					<dd className="mt-1 text-lg text-white  sm:col-span-2 sm:mt-0">
 						<input
@@ -57,7 +56,21 @@ export const EditProfile = () => {
 					</dd>
 				</div>
 				<div className=" px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b-2 border-gray-400">
-					<dt className="text-lg text-white font-medium ">Username</dt>
+					<dt className="text-lg text-white font-medium ">Bio</dt>
+					<dd className="mt-1 text-lg text-white  sm:col-span-2 sm:mt-0">
+						{" "}
+						<input
+							type="text"
+							className="mt-1 text-base text-white bg-slate-700 p-3 rounded-md sm:col-span-2 sm:mt-0"
+							value={userDetails.bio}
+							onChange={(e) => {
+								setUserDetails({ ...userDetails, bio: e.target.value });
+							}}
+						/>
+					</dd>
+				</div>
+				<div className=" px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b-2 border-gray-400">
+					<dt className="text-lg text-white font-medium ">Name</dt>
 					<dd className="mt-1 text-lg text-white  sm:col-span-2 sm:mt-0">
 						<input
 							type="text"
@@ -70,7 +83,7 @@ export const EditProfile = () => {
 					</dd>
 				</div>
 				<div className=" px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b-2 border-gray-400">
-					<dt className="text-lg text-white font-medium ">Email address</dt>
+					<dt className="text-lg text-white font-medium ">Username</dt>
 					<dd className="mt-1 text-lg text-white  sm:col-span-2 sm:mt-0">
 						{" "}
 						<input
@@ -98,7 +111,7 @@ export const EditProfile = () => {
 					</dd>
 				</div>
 				<div className=" px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 border-b-2 border-gray-400">
-					<dt className="text-lg text-white font-medium ">Email address</dt>
+					<dt className="text-lg text-white font-medium ">Website Link</dt>
 					<dd className="mt-1 text-lg text-white  sm:col-span-2 sm:mt-0">
 						{" "}
 						<input
